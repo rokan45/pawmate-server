@@ -220,7 +220,7 @@ async function run() {
     app.delete("/wishlist/:id", verifyToken, async (req, res) => {
       try {
         const { id } = req.params;
-        if (!ObjectId.isValid(id)) return res.status(400).send({ message: "Invalid ID" });
+        if (!ObjectId.isValid(id)) return res.status(400).send({ message: "Invalid ID!" });
         const result = await wishlistCollection.deleteOne({ _id: new ObjectId(id), userEmail: req.user.email });
         res.send(result);
       } catch (err) { res.status(500).send({ message: err.message }); }
