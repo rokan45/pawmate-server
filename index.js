@@ -90,7 +90,7 @@ async function run() {
         const { id } = req.params;
         if (!ObjectId.isValid(id)) return res.status(400).send({ message: "Invalid ID" });
         const pet = await petsCollection.findOne({ _id: new ObjectId(id) });
-        if (!pet) return res.status(404).send({ message: "Pet not found" });
+        if (!pet) return res.status(404).send({ message: "Pet not found!" });
         res.send(pet);
       } catch (err) { res.status(500).send({ message: err.message }); }
     });
