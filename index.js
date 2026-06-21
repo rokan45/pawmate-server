@@ -19,6 +19,7 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
+// server connection
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.bfdgp2o.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 const client = new MongoClient(uri, {
   serverApi: { version: ServerApiVersion.v1, strict: true, deprecationErrors: true },
@@ -60,7 +61,7 @@ async function run() {
       }).send({ success: true });
     });
 
-    // PETS
+    // all pets sorting
     app.get("/pets", async (req, res) => {
       try {
         const { search, species, sort } = req.query;
