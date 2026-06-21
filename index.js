@@ -80,7 +80,7 @@ async function run() {
 
     app.get("/pets/featured", async (req, res) => {
       try {
-        const pets = await petsCollection.find({ status: "available" }).sort({ createdAt: -1 }).limit(6).toArray();
+        const pets = await petsCollection.find({ status: "available" }).sort({ createdAt: -1 }).limit(8).toArray();
         res.send(pets);
       } catch (err) { res.status(500).send({ message: err.message }); }
     });
