@@ -169,7 +169,7 @@ async function run() {
     app.patch("/requests/:id/approve", verifyToken, async (req, res) => {
       try {
         const { id } = req.params;
-        if (!ObjectId.isValid(id)) return res.status(400).send({ message: "Invalid ID" });
+        if (!ObjectId.isValid(id)) return res.status(400).send({ message: "Give a valid ID" });
         const request = await requestsCollection.findOne({ _id: new ObjectId(id) });
         if (!request) return res.status(404).send({ message: "Not found" });
         await requestsCollection.updateOne({ _id: new ObjectId(id) }, { $set: { status: "approved" } });
